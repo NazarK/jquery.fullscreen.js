@@ -137,19 +137,12 @@
             })
             .hide()
             // on load get the images dimensions and show it
-            .load(function(){
-              isLoading = false;
-              $container.trigger("stopLoading");
-              updateSlideSize(newSlide);
-              changeSlide(oldSlide, newSlide);
-            })
-            .error(function(){
-              isLoading = false;
-              newSlide.error = true;
-              $container
-                .trigger("stopLoading")
-                .trigger("error", newSlide);
-            })
+            .on('load',function(){
+               isLoading = false;
+               $container.trigger("stopLoading");
+               updateSlideSize(newSlide);
+               changeSlide(oldSlide, newSlide);
+             })
             .attr("src", newSlide.image);
           $container.append(newSlide.$img);
         } else {
